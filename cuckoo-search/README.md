@@ -1,5 +1,7 @@
 # Cuckoo Search
-Bu klasör, Cuckoo Search algoritması için Python kodunu içerir. Cuckoo Search, metaheuristic bir optimizasyon algoritmasıdır. Asıl amacı, bir işlevin minimum veya maksimum değerini bulmaktır.
+Bu klasör, Cuckoo Search algoritması için Python kodunu içerir. 
+
+Cuckoo Search, metaheuristic bir optimizasyon algoritmasıdır. Asıl amacı, bir işlevin minimum veya maksimum değerini bulmaktır.
 
 # Nasıl Kullanılır?
 cuckoo_search() fonksiyonu, Cuckoo Search algoritmasını çalıştırmak için kullanılır. Bu fonksiyon, aşağıdaki parametreleri alır:
