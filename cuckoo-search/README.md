@@ -24,7 +24,7 @@ max_iter: Maksimum iterasyon sayısı (default: 1000).
 
 Fonksiyon, en iyi çözümü ve en iyi uygunluğu döndürür.
 
-"""
+'''
 from cuckoo_search import cuckoo_search
 
 # Define the fitness function to minimize
@@ -40,13 +40,15 @@ dim = 1
 
 # Run the Cuckoo Search algorithm
 best_nest, best_fitness = cuckoo_search(fitness, dim, lb, ub)
-"""
+
 # Print the results
 print("Best solution found:")
 print(best_nest)
 print("Best fitness found:")
 print(best_fitness)
-Referanslar
+'''
+
+# Referanslar
 Xin-She Yang and Suash Deb. Cuckoo search via Lévy flights. In World Congress on Nature & Biologically Inspired Computing (NaBIC 2009), December 2009.
 E. Talbi, A. A. Jerraya, J. -P. Merlet, L. Lemaitre and A. Hafid. Metaheuristics: from design to implementation. John Wiley & Sons, 2009.
 # Lisans
