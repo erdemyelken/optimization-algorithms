@@ -5,18 +5,26 @@ Bu klasör, Cuckoo Search algoritması için Python kodunu içerir. Cuckoo Searc
 cuckoo_search() fonksiyonu, Cuckoo Search algoritmasını çalıştırmak için kullanılır. Bu fonksiyon, aşağıdaki parametreleri alır:
 
 fitness_func: En aza indirgenmesi gereken işlev.
+
 dim: Arama uzayının boyutu.
+
 lower_bound: Arama uzayının alt sınırı.
+
 upper_bound: Arama uzayının üst sınırı.
+
 num_nests: Yumurta yuvası sayısı (default: 25).
+
 pa: Yumurta yuvalarının yüzdesi (default: 0.25).
+
 alpha: Yumurtaların yeniden konumlandırılması için kullanılan parametre (default: 1).
+
 beta: Yumurtaların yeniden konumlandırılması için kullanılan parametre (default: 0.5).
+
 max_iter: Maksimum iterasyon sayısı (default: 1000).
+
 Fonksiyon, en iyi çözümü ve en iyi uygunluğu döndürür.
 
-python
-Copy code
+"""
 from cuckoo_search import cuckoo_search
 
 # Define the fitness function to minimize
@@ -32,7 +40,7 @@ dim = 1
 
 # Run the Cuckoo Search algorithm
 best_nest, best_fitness = cuckoo_search(fitness, dim, lb, ub)
-
+"""
 # Print the results
 print("Best solution found:")
 print(best_nest)
