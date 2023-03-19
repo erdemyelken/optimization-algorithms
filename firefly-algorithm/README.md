@@ -1,4 +1,4 @@
-# Cuckoo Search and Firefly Algorithm
+# Firefly Algorithm
 
 This repository contains Python implementations of the Cuckoo Search and Firefly Algorithm optimization algorithms. Both algorithms are nature-inspired metaheuristic algorithms that are particularly well-suited to optimization problems with complex search spaces.
 
