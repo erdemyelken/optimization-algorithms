@@ -1,5 +1,5 @@
 import numpy as np
-from gwo import gwo_search
+from grey-wolf-optimizer import gwo_search
 
 # Rosenbrock function
 def rosenbrock(x):
