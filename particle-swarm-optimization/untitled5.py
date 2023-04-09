@@ -1,77 +1,57 @@
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# import json
+import numpy as np
 
-# df = pd.read_csv('prtg_factory_sensors.csv', header=None, names=['sensor_id', 'name', 'description', 'data', 'start_time', 'end_time'])
+class Particle:
+    def __init__(self, bounds):
+        self.position = np.random.uniform(bounds[0], bounds[1])
+        self.velocity = np.random.uniform(-1, 1)
+        self.best_position = self.position
 
-# df['data'] = df['data'].apply(lambda x: json.loads(x))
-# df = pd.json_normalize(df['data'])
+    def update_velocity(self, global_best_position, omega, phip, phig):
+        r1 = np.random.uniform(0, 1)
+        r2 = np.random.uniform(0, 1)
+        cognitive_velocity = phip * r1 * (self.best_position - self.position)
+        social_velocity = phig * r2 * (global_best_position - self.position)
+        self.velocity = omega * self.velocity + cognitive_velocity + social_velocity
 
-# plt.plot(df['traffic_in_speed'], label='Traffic In Speed')
-# plt.plot(df['traffic_out_speed'], label='Traffic Out Speed')
-# plt.legend()
-# plt.show()
+    def update_position(self, bounds):
+        self.position += self.velocity
+        if self.position < bounds[0]:
+            self.position = bounds[0]
+            self.velocity = 0
+        elif self.position > bounds[1]:
+            self.position = bounds[1]
+            self.velocity = 0
 
+class PSO:
+    def __init__(self, objective_function, bounds, num_particles, max_iterations, omega, phip, phig):
+        self.objective_function = objective_function
+        self.bounds = bounds
+        self.num_particles = num_particles
+        self.max_iterations = max_iterations
+        self.omega = omega
+        self.phip = phip
+        self.phig = phig
+        self.particles = []
+        self.global_best_position = None
+        self.global_best_value = np.inf
 
-# import pandas as pd
-# import json
-# import matplotlib.pyplot as plt
+    def initialize_particles(self):
+        for i in range(self.num_particles):
+            particle = Particle(self.bounds)
+            self.particles.append(particle)
 
-# # CSV dosyasını yükle
-# df = pd.read_csv('prtg_factory_sensors.csv')
+    def run(self):
+        self.initialize_particles()
 
-# # metrics_json sütunundaki JSON verilerini ayrıştır
-# df['metrics_json'] = df['metrics_json'].apply(json.loads)
+        for iteration in range(self.max_iterations):
+            for particle in self.particles:
+                fitness = self.objective_function(particle.position)
+                if fitness < self.global_best_value:
+                    self.global_best_position = particle.position
+                    self.global_best_value = fitness
+                if fitness < self.objective_function(particle.best_position):
+                    particle.best_position = particle.position
+                particle.update_velocity(self.global_best_position, self.omega, self.phip, self.phig)
+                particle.update_position(self.bounds)
 
-# # "traffic_out_volume" ve "traffic_in_volume" sütunlarını seç
-# df = df[['traffic_out_volume', 'traffic_in_volume']]
-
-# # "traffic_out_volume" ve "traffic_in_volume" sütunlarındaki verileri grafikleştir
-# df.plot(kind='bar')
-# plt.show()
-
-# prtg_network.csv
-
-# import pandas as pd
-
-# df = pd.read_csv('prtg_network.csv')
-# print(df.head())
-
-# import matplotlib.pyplot as plt
-
-# # datetime formatını belirle
-# df['start_date'] = pd.to_datetime(df['start_date'])
-# # saat başına toplam trafik miktarını hesapla
-# df['hourly_traffic'] = df['traffic_total_speed'] / (1024 * 1024)
-
-# # saat başına toplam trafik miktarını gösteren çizgi grafiği oluştur
-# plt.plot(df['start_date'], df['hourly_traffic'])
-# plt.xlabel('Tarih')
-# plt.ylabel('Saatlik Trafik (MB)')
-# plt.title('Saatlik Trafik Değişimi')
-# plt.show()
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Veri setini okuyun
-df = pd.read_csv('prtg_factory_sensors.csv')
-
-# metrics_json sütununu JSON veri tipine dönüştürün
-df['metrics_json'] = df['metrics_json'].apply(lambda x: eval(x))
-
-# Grafik için veri hazırlığı
-start_dates = pd.to_datetime(df['start_date'])
-end_dates = pd.to_datetime(df['end_date'])
-traffic_out_volumes = [x['traffic_out_volume'] for x in df['metrics_json']]
-traffic_in_volumes = [x['traffic_in_volume'] for x in df['metrics_json']]
-
-# Grafik çizme
-fig, ax = plt.subplots()
-ax.plot(start_dates, traffic_out_volumes, label='Giden Trafik')
-ax.plot(start_dates, traffic_in_volumes, label='Gelen Trafik')
-ax.set_xlabel('Tarih')
-ax.set_ylabel('Trafik Miktarı')
-ax.set_title('PRTG Trafik Ölçümleri')
-ax.legend()
-plt.show()
+        return self.global_best_position, self.global_best_value
