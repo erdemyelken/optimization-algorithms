@@ -8,20 +8,23 @@ To use this implementation, you need to create an instance of the WhaleOptimizat
 
 ```python
 from whale_optimization import WhaleOptimization
-
+```
 # Define the search space and cost function
+```
 search_space = [-10, 10]
 def cost_function(x):
     return sum(x**2)
-
+```
 # Create an instance of the WhaleOptimization class
+```
 woa = WhaleOptimization(search_space, cost_function, n_agents=10, max_iter=100)
-
+```
 # Run the optimization
+```
 best_solution = woa.optimize()
 
 print("Best solution:", best_solution)
-
+```
 In this example, we're optimizing the cost_function, which is simply the sum of the squares of the input values. We're using a search space of [-10, 10], 10 agents, and 100 iterations. After running the optimization, we print out the best solution found.
 ## Parameters
 The `WhaleOptimization` class takes the following parameters:
@@ -41,5 +44,6 @@ The `WhaleOptimization` class also provides a visualization method `visualize()`
 ```python
 woa = WhaleOptimization(search_space, cost_function, n_agents=10, max_iter=100)
 woa.visualize()
+```
 ## References
 Mirjalili, S., Mirjalili, S. M., & Lewis, A. (2014). The whale optimization algorithm. Advances in Engineering Software, 95, 51-67.
