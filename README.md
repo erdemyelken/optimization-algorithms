@@ -1,4 +1,4 @@
-# Optimization Algorithms Repository
+# Optimization Algorithms
 
 This repository contains implementations of several optimization algorithms for solving optimization problems. Each algorithm has its own folder containing a Python implementation file, a README file describing the algorithm, and a test file for verifying the correctness of the implementation.
 
