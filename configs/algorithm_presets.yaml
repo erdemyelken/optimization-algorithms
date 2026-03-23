@@ -1,0 +1,64 @@
+# Algorithm parameter presets
+
+"Particle Swarm Optimization":
+  default:
+    pop_size: 30
+    max_iter: 200
+    w: 0.7
+    c1: 1.5
+    c2: 1.5
+  exploration_heavy:
+    pop_size: 50
+    max_iter: 300
+    w: 0.9
+    c1: 2.0
+    c2: 1.0
+  exploitation_heavy:
+    pop_size: 20
+    max_iter: 200
+    w: 0.4
+    c1: 1.0
+    c2: 2.5
+
+"Grey Wolf Optimizer":
+  default:
+    pop_size: 30
+    max_iter: 200
+  large:
+    pop_size: 50
+    max_iter: 500
+
+"Genetic Algorithm":
+  default:
+    pop_size: 50
+    max_iter: 200
+    mutation_rate: 0.1
+    crossover_rate: 0.9
+    tournament_size: 3
+  high_mutation:
+    pop_size: 50
+    max_iter: 200
+    mutation_rate: 0.3
+    crossover_rate: 0.7
+    tournament_size: 3
+
+"Cuckoo Search":
+  default:
+    pop_size: 25
+    max_iter: 200
+    pa: 0.25
+    beta: 1.5
+
+"Firefly Algorithm":
+  default:
+    pop_size: 25
+    max_iter: 200
+    alpha: 0.2
+    beta0: 1.0
+    gamma: 1.0
+
+"Whale Optimization Algorithm":
+  default:
+    pop_size: 30
+    max_iter: 200
+    b: 1.0

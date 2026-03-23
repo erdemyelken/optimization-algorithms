@@ -1,0 +1,27 @@
+# Default experiment configuration
+function_name: "Rastrigin"
+algorithm_names:
+  - "Particle Swarm Optimization"
+  - "Grey Wolf Optimizer"
+  - "Genetic Algorithm"
+
+dim: 10
+n_runs: 10
+base_seed: 42
+
+algorithm_params:
+  "Particle Swarm Optimization":
+    pop_size: 30
+    max_iter: 200
+    w: 0.7
+    c1: 1.5
+    c2: 1.5
+  "Grey Wolf Optimizer":
+    pop_size: 30
+    max_iter: 200
+  "Genetic Algorithm":
+    pop_size: 50
+    max_iter: 200
+    mutation_rate: 0.1
+    crossover_rate: 0.9
+    tournament_size: 3
